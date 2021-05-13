@@ -11,10 +11,6 @@ CHINESE_ROCKET = 'chinese_rocket'
 
 # Positive Events
 WANDERING_MERCHANT = 'wandering_merchant'
-
-# List of Events
-list_of_events = [SICKNESS, ROAD_CLOSURE, CELL_TOWER_OUTAGE, COMBAT, CAR_BREAKDOWN, ASTEROID, CHINESE_ROCKET, WANDERING_MERCHANT]
-distribution_of_events = [0.175, 0.175, 0.175, 0.2, 0.05, 0.025, 0.025, 0.175]
     
 # COVID strikes, costs medical supplies reduced by doctor
 def sickness_event():
@@ -78,6 +74,12 @@ events = {
 }
 
 def generate_random_event():
+    # List of Events
+    list_of_events = [SICKNESS, ROAD_CLOSURE, CELL_TOWER_OUTAGE, COMBAT, CAR_BREAKDOWN, ASTEROID, CHINESE_ROCKET, WANDERING_MERCHANT]
+    
+    # Probability of each event happening
+    distribution_of_events = [0.175, 0.175, 0.175, 0.2, 0.05, 0.025, 0.025, 0.175]
+    
     random_event = choice(list_of_events, 1, p=distribution_of_events)
     random_event = random_event[0]
     events[random_event]()
