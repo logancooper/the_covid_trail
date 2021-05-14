@@ -23,7 +23,7 @@ class Character():
             return True
     #print stats - print name, health, fullness, and morale of the character
     def print_stats(self):
-        print("Name: %s\nHealth: %d\nFullness: %d\nMorale: %d\nSick: %b" % (self.name,self.health,self.fullness,self.morale,self.sick))
+        print("Name: %s\nHealth: %d\nFullness: %d\nMorale: %d\nSick: %s" % (self.name,self.health,self.fullness,self.morale,self.sick))
     
     #Special Skill
     def use_special_skill(self):
