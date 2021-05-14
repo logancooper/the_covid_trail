@@ -20,6 +20,7 @@ def store(party):
     total_amount_spent = 0
     
     while True:
+        print("\033c")
         print("Your party has $%d available." % (party.money))
         
         if party.money < 10:
@@ -31,10 +32,10 @@ def store(party):
             What would you like to purchase? (1-5)
         -----------------------------------------------
         [ 1 ] Food              $20
-        [ 2 ] Bullets           $30
+        [ 2 ] Hand Sanitizer    $10
         [ 3 ] Fuel              $40
         [ 4 ] Phone Charger     $20
-        [ 5 ] Hand Sanitizer    $10
+        [ 5 ] Bullets           $30
         ------------------------------------------------
         ><><><><><><><><><><><><><><><><><><><><><><><><      
             
@@ -52,13 +53,13 @@ def store(party):
         if choice == "1":
             item = FOOD
         elif choice == "2":
-            item = BULLETS
-        elif choice == "5":
-            item = FUEL
-        elif choice == "6":
-            item = PHONE_CHARGE
-        elif choice == "8":
             item = HAND_SANITIZER
+        elif choice == "3":
+            item = FUEL
+        elif choice == "4":
+            item = PHONE_CHARGE
+        elif choice == "5":
+            item = BULLETS
         
         # total for this specific item
         total = items[item] * quantity
@@ -86,7 +87,8 @@ def store(party):
         # calculate total amount being spent
         total_amount_spent += items[item] * quantity
         
-        print("That will be $%d for a total of $%d." % (total, total_amount_spent))
+        print("That will be $%d for a total of $%d. Your party now has..." % (total, total_amount_spent))
+        party.print_party_supplies()
         
         keep_going = input("Would you like to buy something else? (Y/N) ")
         if keep_going.upper() == "N":
