@@ -28,6 +28,9 @@ class Character():
     #Special Skill
     def use_special_skill(self):
         self.skillUsed = True
+    
+    def restore_special_skill(self):
+        self.skillUsed = False
 
 
 
