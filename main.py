@@ -32,7 +32,7 @@ def main():
         if day > 10:
             break
         #Random event
-        generate_random_event()
+        generate_random_event(party)
 
         #Run main decision function
         decision_menu(party)
