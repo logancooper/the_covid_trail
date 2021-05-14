@@ -4,6 +4,7 @@
 #import classes, music, art, time here
 from party import Party
 from characters import *
+from party import *
 from assets import *
 from store import *
 from events import *
@@ -25,13 +26,13 @@ def main():
         if(day == 0):
             party = create_party()
         print("The day is: " + str(day))
-        today(day, party)
+        today(day, party) 
 
         day += 1
         if day > 10:
             break
         #Random event
-        generate_random_event()
+        generate_random_event(Party)
 
         #Run main decision function
         decision_menu(party)
@@ -42,7 +43,7 @@ def main():
         depression()
         sickness()
         hunger()
-        
+
 def create_party():
         print("\033c")
         print("It's time to assemble your party")
@@ -61,13 +62,18 @@ def create_party():
         party = Party(party_list, 1000, 50, 50, 50, 50, 50)
         return party
 
+#Character selection function
+def character_selection():
+    print("\033c")
+    print(character_info)
 
 # Function to print today's date and location
 def today(day, party):
     if day == 0:
         print(intro_text)
         pause = input("\nPress any key to continue to character selection")
-        character_selection()
+        print(character_info)
+
 
     elif day == 1:
         print(day_01)
@@ -148,24 +154,23 @@ def combat():
     pass
 
 #Daily incrementing for fullness, health, and morale
-class Party:
-    def __init__(self) -> None:
-        self.party_members = []
-
 party = Party()
 
 def hunger():
-    for person in party.party_members:
-        return "Fullness increments down for each player"
+    party.food -= 30
+    if party.food <= 0:
+        for person in party.party_members:
+            person.fullness -= 10*person.fullness_multipler
 
 def sickness():
-    for person in party.party_members:
-        if person.sick == True:
-            return "Decrease health by ... "
+    party.hand_sanitizer -= 30
+    if party.hand_sanitizer <= 0:
+        for person in party.party_members:
+            person.sick == True
 
 def depression():
     for person in party.party_members:
-        return "Decrease morale by ..."
+        person.morale -= 10*person.depression_multiplier
 
 
 #Function to add slow typing effect
@@ -179,8 +184,9 @@ print("\033c")
 #print title screen
 main_title()
 pause = input("\nPress any key to begin")
-
+#Run main loop
 main()
+#If the user succeeds, print the end text/credits
 end_text = "The game has ended. Thanks for playing"
 type_text(end_text)
 
