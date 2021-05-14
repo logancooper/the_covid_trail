@@ -2,19 +2,18 @@
 
 
 #import classes, music, art, time here
-# from characters import *
-
+from party import Party
+from characters import *
+from party import *
 from assets import *
-# from store import *
-import time
-
+from store import *
+from events import *
+from time import sleep
 #Initialize ability to play sound files
 # from pygame import mixer
+# mixer.init()
 
-
-# def sound(file):
-#    sound = mixer.Sound(f"audio/{file}")
-#    return mixer.Sound.play(sound)
+# mixer.Sound.play("audio/bensound-sunny.wav")
 
 #create main loop
 running = True
@@ -24,30 +23,58 @@ def main():
     day = 0
     while running == True:
         print("\033c")
+        if(day == 0):
+            party = create_party()
         print("The day is: " + str(day))
-        today(day) 
+        today(day, party) 
 
         day += 1
         if day > 10:
             break
         #Random event
+        generate_random_event(Party)
 
         #Run main decision function
-        decision_menu()
+        decision_menu(party)
         
-        
+        #Pause
         pause = input("\n\nPress enter to end the day.")
+        #Increment fullness, health, and morale.
+        depression()
+        sickness()
+        hunger()
 
-        # depression()
-        # sickness()
-        # hunger()
+def create_party():
+        print("\033c")
+        print("It's time to assemble your party")
+        doctorName = input("What is the name of the Doctor?")
+        doctor = Character(doctorName, 100, 100, 100, 1, 2, 3)
+        engineerName = input("What is the name of the Engineer?")
+        engineer = Character(engineerName, 100, 100, 100, 2, 2, 2)
+        hunterName = input("What is the name of the Hunter?")
+        hunter = Character(hunterName, 100, 100, 100, 3, 3, 2)
+        influencerName = input("What is the name of the Influencer?")
+        influencer = Character(influencerName, 100, 100, 100, 3, 3, 3)
+        djName = input("What is the name of the DJ?")
+        dj = Character(djName, 100, 100, 100, 2, 2, 1)
 
+        party_list = [doctor, engineer, hunter, influencer, dj]
+        party = Party(party_list, 1000, 50, 50, 50, 50, 50)
+        return party
 
+#Character selection function
+def character_selection():
+    print("\033c")
+    print(character_info)
 
 # Function to print today's date and location
-def today(day):
+def today(day, party):
     if day == 0:
-        print("We'll go the store now")
+        print(intro_text)
+        pause = input("\nPress any key to continue to character selection")
+        print(character_info)
+
+
     elif day == 1:
         print(day_01)
     elif day == 2:
@@ -71,7 +98,17 @@ def today(day):
         running == False
 
 #Main decision menu
-def decision_menu():
+
+
+
+def print_party_supplies():
+    print("Print party supplies")
+
+def print_party_status():
+    print("Print party status")
+
+def decision_menu(party):
+
     print("""
     ><><><><><><><><><>><><><><><><><><><><><><><><
              What do you want to do next?
@@ -81,7 +118,8 @@ def decision_menu():
     [ 3 ] Hunt for Food
     [ 4 ] Enter Store
     [ 5 ] Check Supplies
-    [ 6 ] Quit Game
+    [ 6 ] Check Party Status
+    [ 7 ] Quit Game
     ------------------------------------------------
     ><><><><><><><><><><><><><><><><><><><><><><><><                
     
@@ -96,27 +134,59 @@ def decision_menu():
         print("Enter hunting")
     elif user_choice == "4":
         #Check location
-        print("Enter store function")
-        #store(party)
+        print("Entering store")
+        store(Party)
     elif user_choice == "5":
-        print("Print supply list")
+        #print("Print supply list")
+        party.print_party_supplies()
+
     elif user_choice == "6":
+        print_party_status()
+    elif user_choice == "7":
         print("Exiting the game")
         exit()
     else:
         print("Invalid input. Please choose from options 1-6.")
         user_choice = input(">>>  ")
 
+#Combat functionality
 def combat():
     pass
 
+#Daily incrementing for fullness, health, and morale
+party = Party()
+
+def hunger():
+    party.food -= 30
+    if party.food <= 0:
+        for person in party.party_members:
+            person.fullness -= 10*person.fullness_multipler
+
+def sickness():
+    party.hand_sanitizer -= 30
+    if party.hand_sanitizer <= 0:
+        for person in party.party_members:
+            person.sick == True
+
+def depression():
+    for person in party.party_members:
+        person.morale -= 10*person.depression_multiplier
+
+
+#Function to add slow typing effect
+def type_text(words):
+    for char in words:
+        sleep(0.1)
+        print(char, end='', flush=True)
 
 # Executable program 
 print("\033c")
 #print title screen
 main_title()
-# sound(sunny.wav)
 pause = input("\nPress any key to begin")
-
+#Run main loop
 main()
-print("End of game")
+#If the user succeeds, print the end text/credits
+end_text = "The game has ended. Thanks for playing"
+type_text(end_text)
+
