@@ -12,22 +12,26 @@ CHINESE_ROCKET = 'chinese_rocket'
 # Positive Events
 WANDERING_MERCHANT = 'wandering_merchant'
     
-# COVID strikes, costs medical supplies reduced by doctor
-def sickness_event():
+# COVID strikes, costs medical supplies, reduced by doctor
+def sickness_event(party):
     print("COVID strikes!!")
     
-    # Check to see if party has doctor, if doctor is present, ask if they want
-    # to use doctor's ability to counteract
-    
-    # if party.doctor_alive():
-    #   ask if they want to use it
-    
-    # If they have medical supplies, take from the supplies first and then set
-    # party members to sick
-    
-    # if party.medical_supplies > 0:
-    #   party.medical_supplies -= number_of_supplies
-    #   party.set_sick = True
+    # Check to see if party's doctor is present
+    if party.doctor_alive():
+        # ask if they want to use it
+        choice = input("Would you like to use the doctor's special power? (Y/N)")
+        if choice.upper() == "Y":
+            # Use special skill
+            pass
+    else:
+        # Don't use special skill
+        # If party has medical supplies, take from the supplies first, if not enough
+        # supplies are present, set party members to sick
+        if party.hand_sanitizer >= 50:
+            party.hand_sanitizer -= 50
+        else:
+            # set party to sick
+            pass
 
 # Road closed/detour, costs extra fuel - reduced by engineer
 def road_closure_event():
@@ -73,7 +77,7 @@ events = {
     WANDERING_MERCHANT: wandering_merchant
 }
 
-def generate_random_event():
+def generate_random_event(party):
     # List of Events
     list_of_events = [SICKNESS, ROAD_CLOSURE, CELL_TOWER_OUTAGE, COMBAT, CAR_BREAKDOWN, ASTEROID, CHINESE_ROCKET, WANDERING_MERCHANT]
     
@@ -82,6 +86,4 @@ def generate_random_event():
     
     random_event = choice(list_of_events, 1, p=distribution_of_events)
     random_event = random_event[0]
-    events[random_event]()
-
-generate_random_event()
+    events[random_event](party)
