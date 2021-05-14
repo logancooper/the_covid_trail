@@ -10,10 +10,8 @@ from store import *
 from events import *
 from time import sleep
 #Initialize ability to play sound files
-# from pygame import mixer
-# mixer.init()
 
-# mixer.Sound.play("audio/bensound-sunny.wav")
+
 
 #create main loop
 running = True
@@ -31,6 +29,7 @@ def main():
             pause = input("\nPress any key to continue")
             party = create_party()
         print("\033c")
+        #check is_alive for each member of the party
         print("The day is: " + str(day))
         today(day, party) 
 
@@ -40,6 +39,7 @@ def main():
         #Random event
         generate_random_event(party)
 
+        #Check is_alive for each member of party
         #Run main decision function
         decision_menu(party)
         
@@ -123,11 +123,21 @@ def decision_menu(party):
             run = False
         elif user_choice == "2":
             #Check location 
-            print("Enter hunting")
+            if check_location() == False:
+                print("Enter hunting")
+                hunting()
+            else:
+                print("You can't hunt in a city")
+                pause = input("Press any key to continue")
+                print("\033c")
         elif user_choice == "3":
-            #Check location
-            print("Entering store")
-            store(party)
+            if check_location() == True:
+                print("Entering store")
+                store(party)
+            else:
+                print("You're not in a city right now.")
+                pause = input("Press any key to continue")
+                print("\033c")
         elif user_choice == "4":
             party.print_party_supplies()
             pause = input("Press any key to continue")
@@ -157,15 +167,30 @@ def hunger(party):
             person.fullness -= 10*person.hunger_multiplier
 
 def sickness(party):
-    party.hand_sanitizer -= 30
-    if party.hand_sanitizer <= 0:
+    if party.hand_sanitizer > 0:
+        party.hand_sanitizer -= 30
+        if party.hand_sanitizer <= 0:
+            for person in party.party_members:
+                person.sick == True
+    else:
+        print("You're out of hand sanitizer!")
         for person in party.party_members:
-            person.sick == True
-
+                person.sick == True
 def depression(party):
     for person in party.party_members:
         person.morale -= 10*person.depression_multiplier
 
+
+#Function for hunting game
+def hunting():
+    pass
+
+#Function to check location
+def check_location():
+    if day == "0" or "3" or "5" or "8":
+        return True
+    else:
+        return False
 
 #Function to add slow typing effect
 def type_text(words):
