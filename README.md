@@ -2,7 +2,7 @@
 A terminal role playing game based on the popular game - The Oregon Trail.
  
 ## Screenshots
-Include logo/demo screenshot etc.
+![The COVID Trail Gif](https://github.com/natelee3/the_covid_trail/blob/readme/covid_trail_gif.gif)
 
 ## Tech/framework used
 - Python
