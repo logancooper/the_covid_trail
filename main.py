@@ -2,6 +2,7 @@
 
 
 #import classes, music, art, time here
+from party import Party
 from characters import *
 from assets import *
 from store import *
@@ -21,8 +22,10 @@ def main():
     day = 0
     while running == True:
         print("\033c")
+        if(day == 0):
+            party = create_party()
         print("The day is: " + str(day))
-        today(day) 
+        today(day, party)
 
         day += 1
         if day > 10:
@@ -31,7 +34,7 @@ def main():
         generate_random_event()
 
         #Run main decision function
-        decision_menu()
+        decision_menu(party)
         
         
         pause = input("\n\nPress enter to end the day.")
@@ -39,13 +42,28 @@ def main():
         # depression()
         # sickness()
         # hunger()
+        
+def create_party():
+        print("It's time to assemble your party")
+        doctorName = input("What is the name of the Doctor?")
+        doctor = Character(doctorName, 100, 100, 100, 1, 2, 3)
+        engineerName = input("What is the name of the Engineer?")
+        engineer = Character(engineerName, 100, 100, 100, 2, 2, 2)
+        hunterName = input("What is the name of the Hunter?")
+        hunter = Character(hunterName, 100, 100, 100, 3, 3, 2)
+        influencerName = input("What is the name of the Influencer?")
+        influencer = Character(influencerName, 100, 100, 100, 3, 3, 3)
+        djName = input("What is the name of the DJ?")
+        dj = Character(djName, 100, 100, 100, 2, 2, 1)
 
-
+        party_list = [doctor, engineer, hunter, influencer, dj]
+        party = Party(party_list, 1000, 50, 50, 50, 50, 50)
+        return party
 
 # Function to print today's date and location
-def today(day):
+def today(day, party):
     if day == 0:
-        print("We'll go the store now")
+        print("Day 0")
     elif day == 1:
         print(day_01)
     elif day == 2:
@@ -69,7 +87,7 @@ def today(day):
         running == False
 
 #Main decision menu
-def decision_menu():
+def decision_menu(party):
     print("""
     ><><><><><><><><><>><><><><><><><><><><><><><><
              What do you want to do next?
@@ -97,7 +115,8 @@ def decision_menu():
         print("Entering store")
         store()
     elif user_choice == "5":
-        print("Print supply list")
+        #print("Print supply list")
+        party.print_party_supplies()
     elif user_choice == "6":
         print("Exiting the game")
         exit()
