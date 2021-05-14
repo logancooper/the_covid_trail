@@ -1,18 +1,18 @@
 # Items
-food = 'food'
-bullets = 'bullets'
-fuel = 'fuel'
-phone_charge = 'phone_charger'
-hand_sanitizer = 'hand_sanitizer'
+FOOD = 'food'
+BULLETS = 'bullets'
+FUEL = 'fuel'
+PHONE_CHARGE = 'phone_charger'
+HAND_SANITIZER = 'hand_sanitizer'
 
-list_of_items = [food, bullets, fuel, phone_charge, hand_sanitizer]
+list_of_items = [FOOD, BULLETS, FUEL, PHONE_CHARGE, HAND_SANITIZER]
 
 items = {
-    food: 20,
-    bullets: 30,
-    fuel: 40,
-    phone_charge: 20,
-    hand_sanitizer: 5
+    FOOD: 20,
+    BULLETS: 30,
+    FUEL: 40,
+    PHONE_CHARGE: 20,
+    HAND_SANITIZER: 5
 }
 
 def store(party):
@@ -50,15 +50,15 @@ def store(party):
         quantity = int(input(">>> "))
         
         if choice == "1":
-            item = food
+            item = FOOD
         elif choice == "2":
-            item = bullets
+            item = BULLETS
         elif choice == "5":
-            item = fuel
+            item = FUEL
         elif choice == "6":
-            item = phone_charge
+            item = PHONE_CHARGE
         elif choice == "8":
-            item = hand_sanitizer
+            item = HAND_SANITIZER
         
         # total for this specific item
         total = items[item] * quantity
@@ -72,7 +72,16 @@ def store(party):
         party.money -= total
         
         # add item(s) to inventory
-        party.item += quantity
+        if item == FOOD:
+            party.food += quantity
+        elif item == BULLETS:
+            party.bullets += quantity
+        elif item == FUEL:
+            party.fuel += quantity
+        elif item == PHONE_CHARGE:
+            party.phone_charge += quantity
+        elif item == HAND_SANITIZER:
+            party.hand_sanitizer += quantity
         
         # calculate total amount being spent
         total_amount_spent += items[item] * quantity

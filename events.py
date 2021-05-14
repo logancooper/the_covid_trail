@@ -34,7 +34,7 @@ def sickness_event(party):
             pass
 
 # Road closed/detour, costs extra fuel - reduced by engineer
-def road_closure_event():
+def road_closure_event(party):
     print("Road closure! You must take a detour. This will cost extra fuel.")
     # Check to see if engineer is present, ask if they want to use engineers ability
     
@@ -46,23 +46,23 @@ def road_closure_event():
     # What to do if no fuel is present? Game over?
 
 # Reduced morale, costs extra phone charge - reduced by DJ
-def cell_tower_outage():
+def cell_tower_outage(party):
     print("cell_tower_outage")
 
 # Random enemies that your party, loot extra supplies
-def combat():
+def combat(party):
     print("combat")
 
-def car_breakdown():
+def car_breakdown(party):
     print("car_breakdown")
 
-def asteroid():
+def asteroid(party):
     print("asteroid")
 
-def chinese_rocket():
+def chinese_rocket(party):
     print("chinese_rocket")
 
-def wandering_merchant():
+def wandering_merchant(party):
     print("wandering_merchant")
     
 # Event function reference dictionary
