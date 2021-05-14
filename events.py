@@ -1,3 +1,4 @@
+from combat import combat
 from numpy.random import choice, rand
 
 # Negative Events
@@ -97,8 +98,6 @@ def cell_tower_outage(party):
     print("cell_tower_outage")
 
 # Random enemies that your party, loot extra supplies
-def combat(party):
-    print("combat")
 
 def car_breakdown(party):
     print("Your car has broken down... the only thing that can save you is your engineer's special ability to fix the car. Otherwise, your party will not make it.")
