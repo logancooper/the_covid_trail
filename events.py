@@ -26,13 +26,20 @@ def sickness_event(party):
         elif not party.used_ability("doctor"):
             # ask if they want to use it
             print("Your doctor can use their special power to save you all. Would you like to use the doctor's special power? (Y/N) ")
-            choice = input(">>> ")
-            if choice.upper() == "Y":
-                print("You have used your doctor's special power. You will not be able to use their power again.")
-                # set ability used to true, cannot use again
-                party.use_ability("doctor")
-            elif choice.upper() == "N":
-                covid_strike_helper(party)
+            
+            # validation loop
+            while True:
+                choice = input(">>> ")
+                if choice.upper() == "Y":
+                    print("You have used your doctor's special power. You will not be able to use their power again.")
+                    # set ability used to true, cannot use again
+                    party.use_ability("doctor")
+                    break
+                elif choice.upper() == "N":
+                    covid_strike_helper(party)
+                    break
+                else:
+                    print("Please enter Y or N.")
             
     else:
         # Doctor is dead
