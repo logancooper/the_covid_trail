@@ -11,6 +11,8 @@ CHINESE_ROCKET = 'chinese_rocket'
 
 # Positive Events
 WANDERING_MERCHANT = 'wandering_merchant'
+
+EVENT_CONSTANT = 30
     
 # COVID strikes, costs medical supplies, reduced by doctor
 def sickness_event(party):
@@ -18,31 +20,34 @@ def sickness_event(party):
     
     # Check to see if party's doctor is present
     if party.is_alive("doctor"):
-        if not party.used_ability("doctor"):
-            print("Your doctor can use their special power to save you all. Would you like to use the doctor's special power? (Y/N) ")
+        if party.used_ability("doctor"):
+            print("Oh no!! Your doctor has already used their special ability.")
+            covid_strike_helper(party)
+        elif not party.used_ability("doctor"):
             # ask if they want to use it
+            print("Your doctor can use their special power to save you all. Would you like to use the doctor's special power? (Y/N) ")
             choice = input(">>> ")
             if choice.upper() == "Y":
                 print("You have used your doctor's special power. You will not be able to use their power again.")
                 # set ability used to true, cannot use again
                 party.use_ability("doctor")
+            elif choice.upper() == "N":
+                covid_strike_helper(party)
             
     else:
-        if party.used_ability("doctor"):
-            print("Your doctor has already used their special ability.")
+        # Doctor is dead
+        print("Your doctor is dead and cannot save your party.")
+        covid_strike_helper(party)
             
-        else:
-            print("Your doctor is dead and cannot save your party.")
-        # Don't use special skill
-        # If party has medical supplies, take from the supplies first, if not enough
-        # supplies are present, set party members to sick
-        if party.hand_sanitizer >= 50:
-            print("Your party had to use 50 of your hand sanitizer to avoid gettin sick.")
-            party.hand_sanitizer -= 50
-        else:
-            print("Since your party does not have enough hand sanitizer to protect yourselves, you are all sick.")
-            # set party to sick
-            party.sick_party()
+# helper function to help reduce code in sickness event function
+def covid_strike_helper(party):
+    if party.hand_sanitizer >= EVENT_CONSTANT:
+        print("Your party had to use 50 of your hand sanitizer to avoid gettin sick.")
+        party.hand_sanitizer -= EVENT_CONSTANT
+    else:
+        print("Since your party does not have enough hand sanitizer to protect yourselves, you are all sick.")
+        # set party to sick
+        party.sick_party()
 
 # Road closed/detour, costs extra fuel - reduced by engineer
 def road_closure_event(party):
