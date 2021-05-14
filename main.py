@@ -32,7 +32,7 @@ def main():
         if day > 10:
             break
         #Random event
-        generate_random_event(Party)
+        generate_random_event(party)
 
         #Run main decision function
         decision_menu(party)
@@ -40,9 +40,9 @@ def main():
         #Pause
         pause = input("\n\nPress enter to end the day.")
         #Increment fullness, health, and morale.
-        depression()
-        sickness()
-        hunger()
+        depression(party)
+        sickness(party)
+        hunger(party)
 
 def create_party():
         print("\033c")
@@ -155,19 +155,19 @@ def combat():
 
 #Daily incrementing for fullness, health, and morale
 
-def hunger():
+def hunger(party):
     party.food -= 30
     if party.food <= 0:
         for person in party.party_members:
             person.fullness -= 10*person.fullness_multipler
 
-def sickness():
+def sickness(party):
     party.hand_sanitizer -= 30
     if party.hand_sanitizer <= 0:
         for person in party.party_members:
             person.sick == True
 
-def depression():
+def depression(party):
     for person in party.party_members:
         person.morale -= 10*person.depression_multiplier
 
