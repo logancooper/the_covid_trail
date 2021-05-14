@@ -43,7 +43,7 @@ def main():
 #Character selection function
 def character_selection():
     print("\033c")
-    print("Your team consists of five specialists: ")
+    print(character_info)
 
 # Function to print today's date and location
 def today(day):
