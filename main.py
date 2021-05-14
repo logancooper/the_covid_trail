@@ -24,7 +24,13 @@ def main():
     while running == True:
         print("\033c")
         if(day == 0):
+            print(intro_text)
+            pause = input("\nPress any key to continue")
+            print("\033c")
+            print(character_info)
+            pause = input("\nPress any key to continue")
             party = create_party()
+        print("\033c")
         print("The day is: " + str(day))
         today(day, party) 
 
@@ -46,16 +52,16 @@ def main():
 
 def create_party():
         print("\033c")
-        print("It's time to assemble your party")
-        doctorName = input("What is the name of the Doctor?")
+        print("It's time to assemble your party\n")
+        doctorName = input("What is the name of the Doctor? ")
         doctor = Character(doctorName, 100, 100, 100, 1, 2, 3)
-        engineerName = input("What is the name of the Engineer?")
+        engineerName = input("What is the name of the Engineer? ")
         engineer = Character(engineerName, 100, 100, 100, 2, 2, 2)
-        hunterName = input("What is the name of the Hunter?")
+        hunterName = input("What is the name of the Hunter? ")
         hunter = Character(hunterName, 100, 100, 100, 3, 3, 2)
-        influencerName = input("What is the name of the Influencer?")
+        influencerName = input("What is the name of the Influencer? ")
         influencer = Character(influencerName, 100, 100, 100, 3, 3, 3)
-        djName = input("What is the name of the DJ?")
+        djName = input("What is the name of the DJ? ")
         dj = Character(djName, 100, 100, 100, 2, 2, 1)
 
         party_list = [doctor, engineer, hunter, influencer, dj]
@@ -70,11 +76,7 @@ def character_selection():
 # Function to print today's date and location
 def today(day, party):
     if day == 0:
-        print(intro_text)
-        pause = input("\nPress any key to continue to character selection")
-        print(character_info)
-
-
+        print('')
     elif day == 1:
         print(day_01)
     elif day == 2:
@@ -98,68 +100,61 @@ def today(day, party):
         running == False
 
 #Main decision menu
-
-
-
-def print_party_supplies():
-    print("Print party supplies")
-
-def print_party_status():
-    print("Print party status")
-
 def decision_menu(party):
-
-    print("""
-    ><><><><><><><><><>><><><><><><><><><><><><><><
-             What do you want to do next?
-    -----------------------------------------------
-    [ 1 ] Keep Travelling
-    [ 2 ] Stop to Rest
-    [ 3 ] Hunt for Food
-    [ 4 ] Enter Store
-    [ 5 ] Check Supplies
-    [ 6 ] Check Party Status
-    [ 7 ] Quit Game
-    ------------------------------------------------
-    ><><><><><><><><><><><><><><><><><><><><><><><><                
+    run = True
+    while run == True:
+        print("""
+        ><><><><><><><><><>><><><><><><><><><><><><><><
+                What do you want to do next?
+        -----------------------------------------------
+        [ 1 ] Keep Travelling
+        [ 2 ] Hunt for Food
+        [ 3 ] Enter Store
+        [ 4 ] Check Supplies
+        [ 5 ] Check Party Status
+        [ 6 ] Quit Game
+        ------------------------------------------------
+        ><><><><><><><><><><><><><><><><><><><><><><><><                
     
-    """)
-    user_choice = input(">>>  ")
-    if user_choice == "1":
-        print("The party keeps travelling.")
-    elif user_choice == "2":
-        print("You stop to rest")
-    elif user_choice == "3":
-        #Check location 
-        print("Enter hunting")
-    elif user_choice == "4":
-        #Check location
-        print("Entering store")
-        store(Party)
-    elif user_choice == "5":
-        #print("Print supply list")
-        party.print_party_supplies()
-
-    elif user_choice == "6":
-        print_party_status()
-    elif user_choice == "7":
-        print("Exiting the game")
-        exit()
-    else:
-        print("Invalid input. Please choose from options 1-6.")
+        """)
         user_choice = input(">>>  ")
-
-#Combat functionality
-def combat():
-    pass
-
+        if user_choice == "1":
+            print("The party keeps travelling.")
+            run = False
+        elif user_choice == "2":
+            #Check location 
+            print("Enter hunting")
+        elif user_choice == "3":
+            #Check location
+            print("Entering store")
+            store(party)
+        elif user_choice == "4":
+            party.print_party_supplies()
+            pause = input("Press any key to continue")
+            print("\033c")
+        elif user_choice == "5":
+            party.print_party_status()
+            pause = input("Press any key to continue")
+            print("\033c")
+        elif user_choice == "6":
+            print("Exiting the game")
+            run = False
+            exit()
+        else:
+            print("Invalid input. Please choose from options 1-6.")
+            
 #Daily incrementing for fullness, health, and morale
 
 def hunger(party):
-    party.food -= 30
-    if party.food <= 0:
+    if party.food > 0:
+        party.food -= 30
+        if party.food <= 0:
+            for person in party.party_members:
+                person.fullness -= 10*person.hunger_multiplier
+    else:
+        print("You're out of food!")
         for person in party.party_members:
-            person.fullness -= 10*person.fullness_multipler
+            person.fullness -= 10*person.hunger_multiplier
 
 def sickness(party):
     party.hand_sanitizer -= 30
