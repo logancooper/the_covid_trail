@@ -1,13 +1,24 @@
 # The COVID Trail
-A terminal role playing game based on the popular game - The Oregon Trail.
+A terminal role playing game based on the popular game - The Oregon Trail. Created using Python.
 
 ## Description
+The year is 2020       
+
+A mysterious illness has spread across the world, and each day the number of infections is growing.
+
+To make matters worse, supply chain issues have left the country with a severe toilet paper shortage. 
+
+Many have chosen to lock themselves away in their homes, only emerging into the light to receive door dash meal deliveries.
+
+But not you... You've heard of a city in the far west called Portland, where the toilet paper flows freely and avocado toast is served for breakfast, lunch, and dinner.
+
+Today, you set out from Atlanta with a team of capable allies with one goal...
+
+To make it to Portland in the next 10 days, braving disease, disaster, and all kinds of danger.
+
  
 ## Screenshots
 ![The COVID Trail Gif](https://github.com/natelee3/the_covid_trail/blob/readme/covid_trail_gif.gif)
-
-## Tech/framework used
-- Python
 
 ## Features
 - Choice of Character to join a party of 5 characters on a 10 day trip from Atlanta to Portland
@@ -36,5 +47,12 @@ To clone this application, you will need Git installed on your computer. Check t
 
 ```
 
-## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
+## Group
+
+- <a href="https://github.com/alyssadicarlo">Alyssa DiCarlo</a>
+
+- <a href="https://github.com/logancooper">Logan Cooper</a>
+
+- <a href="https://github.com/natelee3">Nate Lee</a>
+
+- <a href="https://github.com/Tech-Sailor">Dominique Kilgo</a>
