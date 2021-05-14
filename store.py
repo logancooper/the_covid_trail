@@ -36,6 +36,7 @@ def store(party):
         [ 3 ] Fuel              $40
         [ 4 ] Phone Charger     $20
         [ 5 ] Bullets           $30
+        [ 6 ] Return to main menu
         ------------------------------------------------
         ><><><><><><><><><><><><><><><><><><><><><><><><      
             
@@ -60,6 +61,10 @@ def store(party):
             item = PHONE_CHARGE
         elif choice == "5":
             item = BULLETS
+        elif choice == "6":
+            break
+        else:
+            continue
         
         # total for this specific item
         total = items[item] * quantity
