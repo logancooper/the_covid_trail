@@ -33,19 +33,24 @@ def main():
         #Run main decision function
         decision_menu()
         
-        
+        #Pause
         pause = input("\n\nPress enter to end the day.")
+        #Increment fullness, health, and morale.
+        depression()
+        sickness()
+        hunger()
 
-        # depression()
-        # sickness()
-        # hunger()
-
-
+#Character selection function
+def character_selection():
+    print("\033c")
+    print("Your team consists of five specialists: ")
 
 # Function to print today's date and location
 def today(day):
     if day == 0:
-        print("We'll go the store now")
+        print(intro_text)
+        pause = input("\nPress any key to continue to character selection")
+        character_selection()
     elif day == 1:
         print(day_01)
     elif day == 2:
@@ -69,6 +74,13 @@ def today(day):
         running == False
 
 #Main decision menu
+def print_party_supplies():
+    print("Print party supplies")
+
+def print_party_status():
+    print("Print party status")
+
+
 def decision_menu():
     print("""
     ><><><><><><><><><>><><><><><><><><><><><><><><
@@ -79,7 +91,8 @@ def decision_menu():
     [ 3 ] Hunt for Food
     [ 4 ] Enter Store
     [ 5 ] Check Supplies
-    [ 6 ] Quit Game
+    [ 6 ] Check Party Status
+    [ 7 ] Quit Game
     ------------------------------------------------
     ><><><><><><><><><><><><><><><><><><><><><><><><                
     
@@ -95,10 +108,12 @@ def decision_menu():
     elif user_choice == "4":
         #Check location
         print("Entering store")
-        store()
+        store(Party)
     elif user_choice == "5":
-        print("Print supply list")
+        print_party_supplies()
     elif user_choice == "6":
+        print_party_status()
+    elif user_choice == "7":
         print("Exiting the game")
         exit()
     else:
@@ -109,8 +124,32 @@ def decision_menu():
 def combat():
     pass
 
+#Daily incrementing for fullness, health, and morale
+class Party:
+    def __init__(self) -> None:
+        self.party_members = []
+
+party = Party()
+
+def hunger():
+    for person in party.party_members:
+        return "Fullness increments down for each player"
+
+def sickness():
+    for person in party.party_members:
+        if person.sick == True:
+            return "Decrease health by ... "
+
+def depression():
+    for person in party.party_members:
+        return "Decrease morale by ..."
 
 
+#Function to add slow typing effect
+def type_text(words):
+    for char in words:
+        sleep(0.1)
+        print(char, end='', flush=True)
 
 # Executable program 
 print("\033c")
@@ -120,6 +159,5 @@ pause = input("\nPress any key to begin")
 
 main()
 end_text = "The game has ended. Thanks for playing"
-for char in end_text:
-    sleep(0.1)
-    print(char, end='', flush=True)
+type_text(end_text)
+
