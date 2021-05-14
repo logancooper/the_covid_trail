@@ -46,8 +46,7 @@ To make it to Portland in the next 10 days, braving disease, disaster, and all k
 
 """
 
-def choose_members(): 
-   print("First, choose the members of your party: ")
+
   
 
 character_info = """ Your team consists of five specialists who each have different qualities and skills.

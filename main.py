@@ -154,7 +154,6 @@ def combat():
     pass
 
 #Daily incrementing for fullness, health, and morale
-party = Party()
 
 def hunger():
     party.food -= 30
