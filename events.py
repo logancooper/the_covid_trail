@@ -17,29 +17,41 @@ def sickness_event(party):
     print("COVID strikes!!")
     
     # Check to see if party's doctor is present
-    if party.doctor_alive():
-        # ask if they want to use it
-        choice = input("Would you like to use the doctor's special power? (Y/N)")
-        if choice.upper() == "Y":
-            # Use special skill
-            pass
+    if party.is_alive("doctor"):
+        if not party.used_ability("doctor"):
+            print("Your doctor can use their special power to save you all. Would you like to use the doctor's special power? (Y/N) ")
+            # ask if they want to use it
+            choice = input(">>> ")
+            if choice.upper() == "Y":
+                print("You have used your doctor's special power. You will not be able to use their power again.")
+                # set ability used to true, cannot use again
+                party.use_ability("doctor")
+            
     else:
+        if party.used_ability("doctor"):
+            print("Your doctor has already used their special ability.")
+            
+        else:
+            print("Your doctor is dead and cannot save your party.")
         # Don't use special skill
         # If party has medical supplies, take from the supplies first, if not enough
         # supplies are present, set party members to sick
         if party.hand_sanitizer >= 50:
+            print("Your party had to use 50 of your hand sanitizer to avoid gettin sick.")
             party.hand_sanitizer -= 50
         else:
+            print("Since your party does not have enough hand sanitizer to protect yourselves, you are all sick.")
             # set party to sick
-            pass
+            party.sick_party()
 
 # Road closed/detour, costs extra fuel - reduced by engineer
 def road_closure_event(party):
     print("Road closure! You must take a detour. This will cost extra fuel.")
     # Check to see if engineer is present, ask if they want to use engineers ability
     
-    # if party.engineer_alive():
-    #   ask if they want to use special power
+    if party.is_alive("engineer"):
+        print("Your engineer can use their special power to fuel up the car and save you all. Would you like to use your engineer's special power? (Y/N) ")
+        choice = input(">>> ")
     
     # If they have fuel in inventory, take from fuel.
     
