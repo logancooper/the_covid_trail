@@ -50,16 +50,17 @@ To make it to Portland in the next 10 days, braving disease, disaster, and all k
   
 
 character_info = """ Your team consists of five specialists who each have different qualities and skills.
-[ 1 ] THE DOCTOR: Able to cure the party's sickness and restore health. Low risk of sickness, moderate hunger, and prone to depression.
 
-[ 2 ] THE ENGINEER: Able to repair your vehicle and navigate around obstacles. Medium risk of sickness, medium hunger, and medium risk of depression.
+THE DOCTOR: Able to cure the party's sickness and restore health. Low risk of sickness, moderate hunger, and prone to depression.
+
+THE ENGINEER: Able to repair your vehicle and navigate around obstacles. Medium risk of sickness, medium hunger, and medium risk of depression.
 Medium risk of sick
 
-[ 3 ] THE HUNTER: Able to hunt for food while in between cities. High risk of sickness, high hunger, and medium risk of depression.
+THE HUNTER: Able to hunt for food while in between cities. High risk of sickness, high hunger, and medium risk of depression.
 
-[ 4 ] THE INFLUENCER: Special skills: none   High risk of sickness, high hunger, and prone to depression.
+THE INFLUENCER: Special skills: none   High risk of sickness, high hunger, and prone to depression.
 
-[ 5 ] THE D.J.: Able to increase the morale of the entire party to counteract cell tower outages. Medium risk of sickness, medium hunger, and low risk of depression
+THE D.J.: Able to increase the morale of the entire party to counteract cell tower outages. Medium risk of sickness, medium hunger, and low risk of depression
 """
 
 
