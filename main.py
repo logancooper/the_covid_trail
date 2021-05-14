@@ -3,6 +3,7 @@
 
 #import classes, music, art, time here
 from party import Party
+from combat import *
 from characters import *
 from party import *
 from assets import *
@@ -15,7 +16,7 @@ from time import sleep
 
 #create main loop
 running = True
-day = 0
+# day = 0
 
 def main():
     day = 0
@@ -29,23 +30,37 @@ def main():
             pause = input("\nPress any key to continue")
             party = create_party()
         print("\033c")
-        #check is_alive for each member of the party
+        
+
         print("The day is: " + str(day))
         today(day, party) 
 
-        day += 1
-        if day > 10:
+        if day > 9:
             break
+        #Check to see if anyone has died
+        for person in party.party_members:
+            if person.is_alive() == False:
+                print("\n%s has died" % (person.name))
+                
         #Random event
         generate_random_event(party)
-
+        count = 0
+        for person in party.party_members:
+            if person.is_alive() == False:
+                count += 1
+                print("\n%s has died" % (person.name))
+                if count >= 5:
+                    print("You all died. Game over!")
+                    quit()
+        
         #Check is_alive for each member of party
         #Run main decision function
-        decision_menu(party)
+        decision_menu(party, day)
         
         #Pause
         pause = input("\n\nPress enter to end the day.")
         #Increment fullness, health, and morale.
+        day += 1
         depression(party)
         sickness(party)
         hunger(party)
@@ -100,9 +115,10 @@ def today(day, party):
         running == False
 
 #Main decision menu
-def decision_menu(party):
+def decision_menu(party, day):
     run = True
     while run == True:
+        # print("The day is: " + str(day))
         print("""
         ><><><><><><><><><>><><><><><><><><><><><><><><
                 What do you want to do next?
@@ -123,15 +139,15 @@ def decision_menu(party):
             run = False
         elif user_choice == "2":
             #Check location 
-            if check_location() == False:
+            if check_location(day) == False:
                 print("Enter hunting")
-                hunting()
+                combat(party)
             else:
                 print("You can't hunt in a city")
                 pause = input("Press any key to continue")
                 print("\033c")
         elif user_choice == "3":
-            if check_location() == True:
+            if check_location(day):
                 print("Entering store")
                 store(party)
             else:
@@ -181,16 +197,25 @@ def depression(party):
         person.morale -= 10*person.depression_multiplier
 
 
-#Function for hunting game
-def hunting():
-    pass
-
 #Function to check location
-def check_location():
-    if day == "0" or "3" or "5" or "8":
+def check_location(day):
+    print(day)
+    if day == 0 or day == 3 or day == 5 or day == 8:
         return True
     else:
         return False
+
+#Check dead conditions
+def check_dead():
+    count = 0
+    for person in party.party_members:
+        if person.is_alive() == False:
+            count += 1
+            print("\n%s has died" % (person.name))
+            if count >= 5:
+                print("You all died. Game over!")
+                quit()
+    
 
 #Function to add slow typing effect
 def type_text(words):
