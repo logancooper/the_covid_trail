@@ -29,5 +29,7 @@ class Character():
     def use_special_skill(self):
         self.skillUsed = True
 
+    def get_sick(self):
+        self.sick = True
 
 
