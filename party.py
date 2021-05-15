@@ -12,13 +12,18 @@ class Party():
 
     #Print out party status
     #Print out dead if character is dead
+    # def print_party_status(self):
+    #     print("----------Party Status---------")
+    #     for character in self.party_members:
+    #         character.print_stats()
     def print_party_status(self):
-        print("---------Party Status---------")
+        print("------------------Party Status------------------")
+        t = Texttable()
+        t.add_row(["Name:", "Health:", "Fullness:", "Morale:", "Sick:"])
         for character in self.party_members:
-            if(character.is_alive()):
-                character.print_stats()
-            else:
-                print(character.name + " is dead")
+            t.add_row([character.name, character.health, character.fullness, character.morale, character.sick])
+        print(t.draw())
+
     #print party supplies
     def print_party_supplies(self):
         print("---------Party Supplies---------\nMoney: %d\nFood: %d\nHand Sanitizer: %d\nFuel: %d\nPhone Charge: %d\nBullets: %d" % (self.money,self.food,self.hand_sanitizer,self.fuel,self.phone_charge,self.bullets))

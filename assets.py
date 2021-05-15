@@ -27,6 +27,23 @@ $$$$$$$$/ $$ |____    ______        /$$$$$$  |/$$$$$$  |$$ |   $$ |$$$$$$/ $$$$$
 
 """)
 
+def game_over():
+   print("""
+   
+ $$$$$$\   $$$$$$\  $$\      $$\ $$$$$$$$\        $$$$$$\  $$\    $$\ $$$$$$$$\ $$$$$$$\  
+$$  __$$\ $$  __$$\ $$$\    $$$ |$$  _____|      $$  __$$\ $$ |   $$ |$$  _____|$$  __$$\ 
+$$ /  \__|$$ /  $$ |$$$$\  $$$$ |$$ |            $$ /  $$ |$$ |   $$ |$$ |      $$ |  $$ |
+$$ |$$$$\ $$$$$$$$ |$$\$$\$$ $$ |$$$$$\          $$ |  $$ |\$$\  $$  |$$$$$\    $$$$$$$  |
+$$ |\_$$ |$$  __$$ |$$ \$$$  $$ |$$  __|         $$ |  $$ | \$$\$$  / $$  __|   $$  __$$< 
+$$ |  $$ |$$ |  $$ |$$ |\$  /$$ |$$ |            $$ |  $$ |  \$$$  /  $$ |      $$ |  $$ |
+\$$$$$$  |$$ |  $$ |$$ | \_/ $$ |$$$$$$$$\        $$$$$$  |   \$  /   $$$$$$$$\ $$ |  $$ |
+ \______/ \__|  \__|\__|     \__|\________|       \______/     \_/    \________|\__|  \__|
+                                                                                          
+                                                                                          
+                                                                                          
+""")
+   quit()
+
 
 #Intro/Background
 intro_text = """
@@ -68,24 +85,24 @@ THE D.J.: Able to increase the morale of the entire party to counteract cell tow
 
 
 day_01 = """
-Day One - We're on the road from Atlanta heading west.
+Day One - On the road from Atlanta heading northwest. You should go to the store first to get supplies!
 """
 
 day_02 = """
 Day Two - Still on the road toward Kansas City. 
-We should be there by tomorrow
+We should be there by tomorrow.
 """
 
 day_03 = """
-Day Three - You've reached Kansas City, MO
+Day Three - You've reached Kansas City, MO. Unfortunately, a freak gasoline fight accident has closed your favorite BBQ joint.
 """
 
 day_04 = """
-Day Four - Leaving Kansas City and heading west to Denver.
+Day Four - Leaving Kansas City and heading west to Denver. The air is getting cooler.
 """
 
 day_05 = """
-Day Five - You've reached Denver, CO.
+Day Five - You've reached Denver, CO -- the Mile High City! Maybe there's time to stop and take in the views.
 """
 
 day_06 = """
@@ -105,5 +122,5 @@ Day Nine - On the road toward Portland.
 """
 
 day_10 = """
-You made it Portland!!
+We made it Portland!! You win!
 """
