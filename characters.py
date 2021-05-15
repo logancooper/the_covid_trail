@@ -37,13 +37,5 @@ class Character():
         self.skillUsed = False
 
     
-    def print_party_status(self):
-        print("----------Party Status---------")
-        t = Texttable()
-        t.add_row(["Name:", "Health:", "Fullness:", "Morale:", "Sick:"])
-        for character in self.party_members:
-            t.add_row([character.name, character.health, character.fullness, character.morale, character.sick])
-        print(t.draw([]))
-    
     # def print_stats(self):
     #     t.add_row()

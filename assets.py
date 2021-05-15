@@ -85,7 +85,7 @@ THE D.J.: Able to increase the morale of the entire party to counteract cell tow
 
 
 day_01 = """
-Day One - On the road from Atlanta heading northwest.
+Day One - On the road from Atlanta heading northwest. You should go to the store first to get supplies!
 """
 
 day_02 = """
