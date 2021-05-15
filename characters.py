@@ -1,4 +1,8 @@
 #THIS IS A COLLECTION OF CLASSES AND FUNCTIONS RELATED TO CHARACTERS
+
+from texttable import Texttable
+
+
 class Character():
     def __init__(self, name, health, fullness, morale, sickness_multiplier, hunger_multiplier, depression_multiplier):
         self.name = name
@@ -22,8 +26,8 @@ class Character():
         else:
             return True
     #print stats - print name, health, fullness, and morale of the character
-    def print_stats(self):
-        print("Name: %s\nHealth: %d\nFullness: %d\nMorale: %d\nSick: %s" % (self.name,self.health,self.fullness,self.morale,self.sick))
+    # def print_stats(self):
+    #     print("Name: %s\nHealth: %d\nFullness: %d\nMorale: %d\nSick: %s" % (self.name,self.health,self.fullness,self.morale,self.sick))
     
     #Special Skill
     def use_special_skill(self):
@@ -32,5 +36,14 @@ class Character():
     def restore_special_skill(self):
         self.skillUsed = False
 
-
-
+    
+    def print_party_status(self):
+        print("----------Party Status---------")
+        t = Texttable()
+        t.add_row(["Name:", "Health:", "Fullness:", "Morale:", "Sick:"])
+        for character in self.party_members:
+            t.add_row([character.name, character.health, character.fullness, character.morale, character.sick])
+        print(t.draw([]))
+    
+    # def print_stats(self):
+    #     t.add_row()

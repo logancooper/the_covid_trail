@@ -10,6 +10,7 @@ from assets import *
 from store import *
 from events import *
 from time import sleep
+
 #Initialize ability to play sound files
 
 
@@ -34,24 +35,16 @@ def main():
 
         print("The day is: " + str(day))
         today(day, party) 
-
         if day > 9:
             break
         #Check to see if anyone has died
-        for person in party.party_members:
-            if person.is_alive() == False:
-                print("\n%s has died" % (person.name))
+        check_dead(party)
                 
         #Random event
         generate_random_event(party)
-        count = 0
-        for person in party.party_members:
-            if person.is_alive() == False:
-                count += 1
-                print("\n%s has died" % (person.name))
-                if count >= 5:
-                    print("You all died. Game over!")
-                    quit()
+        
+        #Check death again
+        check_dead(party)
         
         #Check is_alive for each member of party
         #Run main decision function
@@ -59,11 +52,16 @@ def main():
         
         #Pause
         pause = input("\n\nPress enter to end the day.")
-        #Increment fullness, health, and morale.
+        #Increment fullness, health, morale, and fuel.
         day += 1
         depression(party)
         sickness(party)
         hunger(party)
+        spend_fuel(party)
+
+
+########################################
+#Function definitions
 
 def create_party():
         print("\033c")
@@ -196,6 +194,12 @@ def depression(party):
     for person in party.party_members:
         person.morale -= 10*person.depression_multiplier
 
+def spend_fuel(party):
+    if party.fuel > 0:
+        party.fuel -= 8
+    else:
+        print("You're totally out of fuel and stranded.")
+        quit()
 
 #Function to check location
 def check_location(day):
@@ -206,15 +210,16 @@ def check_location(day):
         return False
 
 #Check dead conditions
-def check_dead():
+def check_dead(party):
     count = 0
     for person in party.party_members:
         if person.is_alive() == False:
+            party.party_members.remove(person)
             count += 1
             print("\n%s has died" % (person.name))
-            if count >= 5:
-                print("You all died. Game over!")
-                quit()
+            if count >= len(party.party_members):
+                print("You all died.")
+                game_over()
     
 
 #Function to add slow typing effect
@@ -223,6 +228,7 @@ def type_text(words):
         sleep(0.1)
         print(char, end='', flush=True)
 
+################################################
 # Executable program 
 print("\033c")
 #print title screen
