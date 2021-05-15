@@ -13,12 +13,12 @@ def combat(party):
 
     #While party health + enemy health are > 0, alternate between these
     while ((party_health and enemy.health) > 0):
-        print("Party Health: " + party_health + "\nEnemy Health: " + enemy.health + "\n")
-        party_health -= enemy_attack(enemy, party)
-        print("Party Health: " + party_health + "\nEnemy Health: " + enemy.health + "\n")
+        print("Party Health: " + str(party_health) + "\nEnemy Health: " + str(enemy.health) + "\n")
+        party_health -= enemy_attack(enemy)
+        print("Party Health: " + str(party_health) + "\nEnemy Health: " + str(enemy.health) + "\n")
         pause = input("\nPress any key to continue")
-        enemy.health -= party_attack(enemy, party)
-        print("Party Health: " + party_health + "\nEnemy Health: " + enemy.health + "\n")
+        enemy.health -= party_attack(party)
+        print("Party Health: " + str(party_health) + "\nEnemy Health: " + str(enemy.health) + "\n")
         pause = input("\nPress any key to continue")
     
     if(party_health <= 0):
@@ -28,31 +28,31 @@ def combat(party):
 
 
 
-def lose_fight(self, party, enemy):
-        print("You lost the fight! Your party will take " + enemy.power + " points of damage distributed across all members")
-        print("The enemies stole some of your supplies!")
-        for character in party.party_list:
-            character.health -= enemy.power/party.total_alive_members()
-        party.food -= 10
-        party.hand_sanitizer -= 10
-        party.fuel -= 10
-        party.phone_charge -= 10
+def lose_fight(party, enemy):
+    print("You lost the fight! Your party will take " + str(enemy.power) + " points of damage distributed across all members")
+    print("The enemies stole some of your supplies!")
+    for character in party.party_list:
+        character.health -= enemy.power/party.total_alive_members()
+    party.food -= 10
+    party.hand_sanitizer -= 10
+    party.fuel -= 10
+    party.phone_charge -= 10
 
-def win_fight(self, party, enemy):
-        print("You won the fight! Your party scavenges some supplies from the loot")
-        party.food += 10
-        party.hand_sanitizer += 10
-        party.fuel += 10
-        party.phone_charge += 10
+def win_fight(party, enemy):
+    print("You won the fight! Your party scavenges some supplies from the loot")
+    party.food += 10
+    party.hand_sanitizer += 10
+    party.fuel += 10
+    party.phone_charge += 10
 
 #Enemy attacks
 def enemy_attack(enemy):
-    print(enemy.name + "attacks the party for " + enemy.power + " Damage!")
+    print(enemy.name + " attacks the party for " + str(enemy.power) + " Damage!")
     return enemy.power
 #Player attacks
 def party_attack(party):
     party_power = party.get_total_morale()/4 + party.get_total_health()/4
-    print("You attack the enemy for " + party_power + " Damage!")
+    print("You attack the enemy for " + str(party_power) + " Damage!")
     return party_power
 
 def generate_random_enemy():
@@ -60,14 +60,14 @@ def generate_random_enemy():
     if enemy_type == 0:    
         enemy = Enemy("Gathering of Rabid Millenials", 50, 50)
     if enemy_type == 1:
-        enemy = Enemy("Pack of Zombies ", 20, 20)
+        enemy = Enemy("Pack of Zombies", 20, 20)
     if enemy_type == 2:
         enemy = Enemy("Group of Anti-Vaxx Karens", 25, 75)
     if enemy_type == 3:
         enemy = Enemy("Rave of Spring Breakers", 75, 25)
     return enemy
 
-class Enemy():
+class Enemy:
     def __init__(self, name, power, health):
         self.name = name
         self.power = power

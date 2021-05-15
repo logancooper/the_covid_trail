@@ -24,7 +24,6 @@ class Party():
             t.add_row([character.name, character.health, character.fullness, character.morale, character.sick])
         print(t.draw())
 
-
     #print party supplies
     def print_party_supplies(self):
         print("---------Party Supplies---------\nMoney: %d\nFood: %d\nHand Sanitizer: %d\nFuel: %d\nPhone Charge: %d\nBullets: %d" % (self.money,self.food,self.hand_sanitizer,self.fuel,self.phone_charge,self.bullets))
@@ -74,7 +73,7 @@ class Party():
             return self.party_members[4].use_special_skill()
 
         #use the ability of a specific party member
-    def refresh_ablility(self, character): 
+    def refresh_ability(self, character): 
         if(character == 'doctor'):
             return self.party_members[0].restore_special_skill()
         if(character == 'engineer'):
