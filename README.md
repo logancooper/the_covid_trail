@@ -32,7 +32,7 @@ To make it to Portland in the next 10 days, braving disease, disaster, and all k
 - Pygame
 
 ## How to Use
-To clone this application, you will need Git installed on your computer. Check to see if you have Git by running the following commands in your command line:
+To clone this application, you will need Git installed on your computer. To play the game, run the following in the command line:
 
 ```bash
 
@@ -43,7 +43,10 @@ To clone this application, you will need Git installed on your computer. Check t
     $ cd the_covid_trail
 
     # Install dependencies
-    $ pip install -r requirements.txt
+    $ pip3 install -r requirements.txt
+
+    # Run the game
+    python3 main.py
 
 ```
 
