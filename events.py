@@ -1,3 +1,4 @@
+from combat import combat
 from numpy.random import choice, rand
 
 # Negative Events
@@ -83,6 +84,10 @@ def road_closure_event(party):
                     break
                 else:
                     print("Please enter Y or N.")
+    else:
+        # Doctor is dead
+        print("Your engineer is dead and cannot save your party.")
+        road_closure_helper(party)
     
 def road_closure_helper(party):
     if party.fuel >= EVENT_CONSTANT:
@@ -94,11 +99,45 @@ def road_closure_helper(party):
 
 # Reduced morale, costs extra phone charge - reduced by DJ
 def cell_tower_outage(party):
-    print("cell_tower_outage")
+    print("There is a cell tower down in your area. You don't have signal. Your influencer cannot survive without cell service and dies.")
+    # Kill influencer
+    party.party_members[3].health = 0
+    print("The rest of your party can be saved.")
+    # check to see if DJ is alive
+    if party.is_alive("dj"):
+        # check if the DJ has used special power
+        if party.used_ability("dj"):
+            print("Oh no!! Your DJ has already used their special ability.")
+            cell_tower_outage_helper(party)
+        else:
+            # ask if they want to use special ability
+            print("Your DJ can use their special power to save you all from dealthy low morale. Would you like to use your DJ's special power? (Y/N) ")
+            
+            # validation loop
+            while True:
+                choice = input(">>> ")
+                if choice.upper() == "Y":
+                    print("You have used your DJ's special power. You will not be able to use their power again.")
+                    # change ability used to true, party cannot use ablility again
+                    party.use_ability("dj")
+                    break
+                elif choice.upper() == "N":
+                    road_closure_helper(party)
+                    break
+                else:
+                    print("Please enter Y or N.")
+    else:
+        print("Your DJ is dead and cannot save your party.")
+        
+def cell_tower_outage_helper(party):
+    if party.phone_charge >= EVENT_CONSTANT:
+        party.phone_charge -= EVENT_CONSTANT
+        print("%d of your phone charge was used to avoid decreasing morale to a deathly level." % (EVENT_CONSTANT))
+    else:
+        print("You do not have enough phone charge.")
+        party.phone_charge -= EVENT_CONSTANT
 
 # Random enemies that your party, loot extra supplies
-def combat(party):
-    print("combat")
 
 def car_breakdown(party):
     print("Your car has broken down... the only thing that can save you is your engineer's special ability to fix the car. Otherwise, your party will not make it.")

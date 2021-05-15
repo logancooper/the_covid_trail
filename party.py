@@ -15,7 +15,10 @@ class Party():
     def print_party_status(self):
         print("---------Party Status---------")
         for character in self.party_members:
-            character.print_stats()
+            if(character.is_alive()):
+                character.print_stats()
+            else:
+                print(character.name + " is dead")
     #print party supplies
     def print_party_supplies(self):
         print("---------Party Supplies---------\nMoney: %d\nFood: %d\nHand Sanitizer: %d\nFuel: %d\nPhone Charge: %d\nBullets: %d" % (self.money,self.food,self.hand_sanitizer,self.fuel,self.phone_charge,self.bullets))
