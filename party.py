@@ -68,7 +68,7 @@ class Party():
             return self.party_members[4].use_special_skill()
 
         #use the ability of a specific party member
-    def refresh_ablility(self, character): 
+    def refresh_ability(self, character): 
         if(character == 'doctor'):
             return self.party_members[0].restore_special_skill()
         if(character == 'engineer'):

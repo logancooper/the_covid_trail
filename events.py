@@ -111,7 +111,7 @@ def cell_tower_outage(party):
             cell_tower_outage_helper(party)
         else:
             # ask if they want to use special ability
-            print("Your DJ can use their special power to save you all from dealthy low morale. Would you like to use your DJ's special power? (Y/N) ")
+            print("Your DJ can use their special power to save you all from deathly low morale. Would you like to use your DJ's special power? (Y/N) ")
             
             # validation loop
             while True:
@@ -182,24 +182,28 @@ def wandering_merchant(party):
         if choice == "1":
             if party.used_ability("doctor"):
                 party.refresh_ability("doctor")
+                print("Doctor's ability has been restored.")
                 break
             else:
                 print("The doctor still has their ability. Please choose another character or choose to receive $100.")
         elif choice == "2":
             if party.used_ability("engineer"):
                 party.refresh_ability("engineer")
+                print("Engineer's ability has been restored.")
                 break
             else:
                 print("The engineer still has their ability. Please choose another character or choose to receive $100.")
         elif choice == "3":
             if party.used_ability("hunter"):
                 party.refresh_ability("hunter")
+                print("Hunter's ability has been restored.")
                 break
             else:
                 print("The hunter still has their ability. Please choose another character or choose to receive $100.")
         elif choice == "4":
             if party.used_ability("dj"):
                 party.refresh_ability("dj")
+                print("DJ's ability has been restored.")
                 break
             else:
                 print("The DJ still has their ability. Please choose another character or choose to receive $100.")
