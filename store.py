@@ -1,3 +1,8 @@
+from pygame import mixer
+
+mixer.init()
+mixer.music.set_volume(0.3)
+
 # Items
 FOOD = 'food'
 BULLETS = 'bullets'
@@ -14,6 +19,10 @@ items = {
     PHONE_CHARGE: 20,
     HAND_SANITIZER: 5
 }
+
+def sound(file):
+    sound = mixer.Sound("audio/%s" % file)
+    return mixer.Sound.play(sound)
 
 def store(party):
     

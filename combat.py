@@ -1,7 +1,10 @@
 import random
 from characters import *
 from party import *
-from main import sound
+from pygame import mixer
+mixer.init()
+mixer.music.set_volume(0.3)
+
 
 def combat(party):
     print("You have entered combat!")
@@ -62,13 +65,13 @@ def party_attack(party):
 def generate_random_enemy():
     enemy_type = random.randrange(0,3)
     if enemy_type == 0:    
-        enemy = Enemy("Gathering of Rabid Millenials", 50, 50)
+        enemy = Enemy("Gathering of Rabid Millenials", 100, 100)
     if enemy_type == 1:
-        enemy = Enemy("Pack of Zombies", 20, 20)
+        enemy = Enemy("Pack of Zombies", 75, 75)
     if enemy_type == 2:
-        enemy = Enemy("Group of Anti-Vaxx Karens", 25, 75)
+        enemy = Enemy("Group of Anti-Vaxx Karens", 50, 125)
     if enemy_type == 3:
-        enemy = Enemy("Rave of Spring Breakers", 75, 25)
+        enemy = Enemy("Rave of Spring Breakers", 125, 50)
     return enemy
 
 class Enemy:
@@ -76,3 +79,8 @@ class Enemy:
         self.name = name
         self.power = power
         self.health = health
+        
+        
+def sound(file):
+    sound = mixer.Sound("audio/%s" % file)
+    return mixer.Sound.play(sound)
