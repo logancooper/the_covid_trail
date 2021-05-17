@@ -248,7 +248,7 @@ def type_text(words):
 ################################################
 # Executable program 
 print("\033c")
-mixer.music.play()
+mixer.music.play(-1)
 #print title screen
 main_title()
 pause = input("\nPress any key to begin")
