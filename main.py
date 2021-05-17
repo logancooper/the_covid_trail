@@ -179,35 +179,41 @@ def decision_menu(party, day):
 
 def hunger(party):
     if party.food > 0:
-        party.food -= 30
-        if party.food <= 0:
-            for person in party.party_members:
-                person.fullness -= 10*person.hunger_multiplier
+        party.food -= 10
     else:
         print("You're out of food!")
         for person in party.party_members:
             person.fullness -= 10*person.hunger_multiplier
+            if(person.fullness <= 0):
+                person.health -= 10
 
 def sickness(party):
     if party.hand_sanitizer > 0:
-        party.hand_sanitizer -= 30
-        if party.hand_sanitizer <= 0:
-            for person in party.party_members:
-                person.sick == True
+        party.hand_sanitizer -= 12
     else:
         print("You're out of hand sanitizer!")
+        party.sick_party()
         for person in party.party_members:
-                person.sick == True
+            if person.sick == True and person.is_alive() == True:
+                person.health -= 10
+    
+    
 def depression(party):
-    for person in party.party_members:
-        person.morale -= 10*person.depression_multiplier
+    if party.phone_charge > 0:
+        party.phone_charge -= 7
+    else:
+        print("You're out of food!")
+        for person in party.party_members:
+            person.morale -= 10*person.depression_multiplier
+            if(person.morale <= 0):
+                person.health -= 10
 
 def spend_fuel(party):
     if party.fuel > 0:
         party.fuel -= 8
     else:
         print("You're totally out of fuel and stranded.")
-        quit()
+        game_over()
 
 #Function to check location
 def check_location(day):
