@@ -37,6 +37,8 @@ def main():
             print(character_info)
             pause = input("\nPress any key to continue")
             party = create_party()
+            pause = input("Now we'll go to the store to get supplies. Press any key to continue.")
+            store(party)
         print("\033c")
         
 
@@ -140,6 +142,7 @@ def decision_menu(party, day):
         """)
         user_choice = input(">>>  ")
         if user_choice == "1":
+            sound("burnout.wav")
             print("The party keeps travelling.")
             run = False
         elif user_choice == "2":
