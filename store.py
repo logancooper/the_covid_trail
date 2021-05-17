@@ -92,6 +92,7 @@ def store(party):
         # calculate total amount being spent
         total_amount_spent += items[item] * quantity
         
+        sound("cash.wav")
         print("That will be $%d for a total of $%d. Your party now has..." % (total, total_amount_spent))
         party.print_party_supplies()
         
