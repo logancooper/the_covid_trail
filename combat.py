@@ -1,6 +1,8 @@
 import random
 from characters import *
 from party import *
+from main import sound
+
 def combat(party):
     print("You have entered combat!")
     #Generate random enemy
