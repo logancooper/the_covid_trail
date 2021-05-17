@@ -255,6 +255,5 @@ pause = input("\nPress any key to begin")
 #Run main loop
 main()
 #If the user succeeds, print the end text/credits
-end_text = "The game has ended. Thanks for playing"
-type_text(end_text)
+success()
 
