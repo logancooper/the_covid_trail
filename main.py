@@ -10,10 +10,13 @@ from assets import *
 from store import *
 from events import *
 from time import sleep
+from pygame import mixer
 
 #Initialize ability to play sound files
-
-
+mixer.init()
+mixer.music.load("audio/bensound-sunny.wav")
+#Set volume
+mixer.music.set_volume(0.7)
 
 #create main loop
 running = True
@@ -231,6 +234,7 @@ def type_text(words):
 ################################################
 # Executable program 
 print("\033c")
+mixer.music.play()
 #print title screen
 main_title()
 pause = input("\nPress any key to begin")
