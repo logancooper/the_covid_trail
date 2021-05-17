@@ -5,7 +5,7 @@
 from pygame import mixer
 
 mixer.init()
-mixer.music.set_volume(0.3)
+mixer.music.set_volume(0.1)
 
 def sound(file):
     sound = mixer.Sound("audio/%s" % file)
@@ -34,6 +34,7 @@ $$$$$$$$/ $$ |____    ______        /$$$$$$  |/$$$$$$  |$$ |   $$ |$$$$$$/ $$$$$
 """)
 
 def game_over():
+   mixer.music.stop()
    sound("game_over.wav")
    print("""
    
@@ -53,6 +54,7 @@ $$ |  $$ |$$ |  $$ |$$ |\$  /$$ |$$ |            $$ |  $$ |  \$$$  /  $$ |      
    quit()
 
 def success():
+   mixer.music.stop()
    sound("win.wav")
    print("""
 

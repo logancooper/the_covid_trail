@@ -4,7 +4,7 @@ from numpy.random import choice, rand
 from pygame import mixer
 
 mixer.init()
-mixer.music.set_volume(0.3)
+mixer.music.set_volume(0.1)
 
 # Negative Events
 SICKNESS = 'sickness'

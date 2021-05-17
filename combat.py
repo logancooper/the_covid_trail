@@ -3,7 +3,7 @@ from characters import *
 from party import *
 from pygame import mixer
 mixer.init()
-mixer.music.set_volume(0.3)
+mixer.music.set_volume(0.1)
 
 
 def combat(party):
