@@ -52,14 +52,6 @@ def store(party):
         """)
         choice = input(">>> ")
         
-        print("""
-        ><><><><><><><><><>><><><><><><><><><><><><><><
-                    How many would you like?
-        ><><><><><><><><><>><><><><><><><><><><><><><><
-              
-        """)
-        quantity = int(input(">>> "))
-        
         if choice == "1":
             item = FOOD
         elif choice == "2":
@@ -73,8 +65,26 @@ def store(party):
         elif choice == "6":
             break
         else:
+            print("Please enter a number between 1 and 6.")
             continue
         
+        print("""
+        ><><><><><><><><><>><><><><><><><><><><><><><><
+                    How many would you like?
+        ><><><><><><><><><>><><><><><><><><><><><><><><
+            
+        """)
+        
+        # Validation loop
+        while True:
+            quantity = input(">>> ")
+            
+            try:
+                quantity = int(quantity)
+                break
+            except:
+                print("Please enter a number greater than 0")
+                        
         # total for this specific item
         total = items[item] * quantity
         
