@@ -1,3 +1,4 @@
+from events import chinese_rocket
 from characters import *
 
 class Party():
@@ -21,7 +22,12 @@ class Party():
         t = Texttable()
         t.add_row(["Name:", "Health:", "Fullness:", "Morale:", "Sick:"])
         for character in self.party_members:
-            t.add_row([character.name, character.health, character.fullness, character.morale, character.sick])
+            sick_string = ""
+            if(character.sick == 1):
+                sick_string = "Sick"
+            else:
+                sick_string = "Not Sick"
+            t.add_row([character.name, character.health, character.fullness, character.morale, sick_string])
         print(t.draw())
 
     #print party supplies
