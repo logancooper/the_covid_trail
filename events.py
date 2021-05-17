@@ -168,7 +168,7 @@ def asteroid(party):
     kill_party(party)
 
 def chinese_rocket(party):
-    sound("missle.wav")
+    sound("missile.wav")
     print("China's rocket fell out of the sky and landed on your party!! None of you survived. Game over.")
     kill_party(party)
 
