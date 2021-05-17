@@ -1,3 +1,4 @@
+from assets import game_over
 from combat import combat
 from numpy.random import choice, rand
 
@@ -94,8 +95,9 @@ def road_closure_helper(party):
         party.fuel -= EVENT_CONSTANT
         print("%d of your fuel was used to avoid being stranded." % (EVENT_CONSTANT))
     else:
-        print("You do not have enough fuel. Your party is stranded. Game over.")
+        print("You do not have enough fuel. Your party is stranded.")
         party.fuel -= EVENT_CONSTANT
+        game_over()
 
 # Reduced morale, costs extra phone charge - reduced by DJ
 def cell_tower_outage(party):
@@ -150,12 +152,15 @@ def car_breakdown(party):
     else:
         print("Your engineer is dead. Game over.")
         party.fuel = 0
+        game_over()
 
 def asteroid(party):
+    sound("explosion.wav")
     print("A HUGE asteroid has fallen on your party. There were no survivors. Game over.")
     kill_party(party)
 
 def chinese_rocket(party):
+    sound("missle.wav")
     print("China's rocket fell out of the sky and landed on your party!! None of you survived. Game over.")
     kill_party(party)
 
@@ -209,6 +214,7 @@ def wandering_merchant(party):
                 print("The DJ still has their ability. Please choose another character or choose to receive $100.")
         elif choice == "5":
             party.money += 100
+            sound("cash.wav")
             print("You party is now $100 richer!")
             break
         else:
@@ -220,6 +226,7 @@ def kill_party(party):
     party_members = party.party_members
     for member in party_members:
         member.health = 0
+        game_over()
     
 # Event function reference dictionary
 events = {
