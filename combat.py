@@ -51,20 +51,20 @@ def enemy_attack(enemy):
     return enemy.power
 #Player attacks
 def party_attack(party):
-    party_power = party.get_total_morale()/4 + party.get_total_health()/4
+    party_power = party.get_total_morale()*1.5 + party.get_total_health()*1.5
     print("You attack the enemy for " + str(party_power) + " Damage!")
     return party_power
 
 def generate_random_enemy():
     enemy_type = random.randrange(0,3)
     if enemy_type == 0:    
-        enemy = Enemy("Gathering of Rabid Millenials", 50, 50)
+        enemy = Enemy("Gathering of Rabid Millenials", 100, 100)
     if enemy_type == 1:
-        enemy = Enemy("Pack of Zombies", 20, 20)
+        enemy = Enemy("Pack of Zombies", 75, 75)
     if enemy_type == 2:
-        enemy = Enemy("Group of Anti-Vaxx Karens", 25, 75)
+        enemy = Enemy("Group of Anti-Vaxx Karens", 50, 125)
     if enemy_type == 3:
-        enemy = Enemy("Rave of Spring Breakers", 75, 25)
+        enemy = Enemy("Rave of Spring Breakers", 125, 50)
     return enemy
 
 class Enemy:
