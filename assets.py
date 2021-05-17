@@ -69,6 +69,7 @@ $$    $$/ $$ |  $$ |$$       |$$ |  $$ |   $$ |         $$    $$/ $$    $$/ $$  
                                                                                                                                   
                                                                                                                                   
 """)
+   pause = input("Press any key to end the game.")
 
 #Intro/Background
 intro_text = """
