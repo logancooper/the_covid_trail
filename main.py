@@ -16,7 +16,7 @@ from pygame import mixer
 mixer.init()
 mixer.music.load("audio/title_music.wav")
 #Set volume
-mixer.music.set_volume(0.3)
+mixer.music.set_volume(0.1)
 
 def sound(file):
     sound = mixer.Sound("audio/%s" % file)
@@ -31,7 +31,7 @@ def main():
     while running == True:
         print("\033c")
         if(day == 0):
-            print(intro_text)
+            type_text(intro_text)
             pause = input("\nPress any key to continue")
             print("\033c")
             print(character_info)
