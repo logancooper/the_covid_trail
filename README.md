@@ -30,6 +30,7 @@ To make it to Portland in the next 10 days, braving disease, disaster, and all k
 ## Dependencies
 - Numpy
 - Pygame
+- texttable
 
 ## How to Use
 To clone this application, you will need Git installed on your computer. To play the game, run the following in the command line:
