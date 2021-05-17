@@ -1,6 +1,10 @@
 from assets import game_over
 from combat import combat
 from numpy.random import choice, rand
+from pygame import mixer
+
+mixer.init()
+mixer.music.set_volume(0.3)
 
 # Negative Events
 SICKNESS = 'sickness'
@@ -15,6 +19,10 @@ CHINESE_ROCKET = 'chinese_rocket'
 WANDERING_MERCHANT = 'wandering_merchant'
 
 EVENT_CONSTANT = 30
+
+def sound(file):
+    sound = mixer.Sound("audio/%s" % file)
+    return mixer.Sound.play(sound)
     
 # COVID strikes, costs medical supplies, reduced by doctor
 def sickness_event(party):

@@ -1,6 +1,11 @@
 import random
 from characters import *
 from party import *
+from pygame import mixer
+mixer.init()
+mixer.music.set_volume(0.3)
+
+
 def combat(party):
     print("You have entered combat!")
     #Generate random enemy
@@ -74,3 +79,8 @@ class Enemy:
         self.name = name
         self.power = power
         self.health = health
+        
+        
+def sound(file):
+    sound = mixer.Sound("audio/%s" % file)
+    return mixer.Sound.play(sound)
