@@ -16,7 +16,7 @@ from pygame import mixer
 mixer.init()
 mixer.music.load("audio/title_music.wav")
 #Set volume
-mixer.music.set_volume(0.7)
+mixer.music.set_volume(0.3)
 
 def sound(file):
     sound = mixer.Sound("audio/%s" % file)
