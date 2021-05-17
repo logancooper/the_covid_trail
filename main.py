@@ -42,7 +42,7 @@ def main():
         print("\033c")
         
 
-        print("The day is: " + str(day))
+        # print("The day is: " + str(day))
         today(day, party) 
         if day > 9:
             break
@@ -233,7 +233,7 @@ def check_dead(party):
         if person.is_alive() == False:
             # party.party_members.remove(person)
             count += 1
-            print("\n%s has died" % (person.name))
+            print("\033[1;31;40m\n%s has died" % (person.name))
             if count >= len(party.party_members):
                 print("\nYou all died.")
                 game_over()
