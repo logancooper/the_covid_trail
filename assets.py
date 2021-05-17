@@ -2,8 +2,14 @@
 
 
 #Music
+from pygame import mixer
 
+mixer.init()
+mixer.music.set_volume(0.3)
 
+def sound(file):
+    sound = mixer.Sound("audio/%s" % file)
+    return mixer.Sound.play(sound)
 
 #Artwork
 
