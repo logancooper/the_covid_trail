@@ -214,7 +214,7 @@ def check_dead(party):
     count = 0
     for person in party.party_members:
         if person.is_alive() == False:
-            party.party_members.remove(person)
+            #party.party_members.remove(person)
             count += 1
             print("\n%s has died" % (person.name))
             if count >= len(party.party_members):
