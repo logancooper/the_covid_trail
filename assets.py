@@ -28,6 +28,7 @@ $$$$$$$$/ $$ |____    ______        /$$$$$$  |/$$$$$$  |$$ |   $$ |$$$$$$/ $$$$$
 """)
 
 def game_over():
+   sound("game_over.wav")
    print("""
    
  $$$$$$\   $$$$$$\  $$\      $$\ $$$$$$$$\        $$$$$$\  $$\    $$\ $$$$$$$$\ $$$$$$$\  
@@ -67,6 +68,8 @@ To make it to Portland in the next 10 days, braving disease, disaster, and all k
   
 
 character_info = """ Your team consists of five specialists who each have different qualities and skills.
+
+
 
 THE DOCTOR: Able to cure the party's sickness and restore health. Low risk of sickness, moderate hunger, and prone to depression.
 

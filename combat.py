@@ -47,10 +47,12 @@ def win_fight(party, enemy):
 
 #Enemy attacks
 def enemy_attack(enemy):
+    sound("battle.wav")
     print(enemy.name + " attacks the party for " + str(enemy.power) + " Damage!")
     return enemy.power
 #Player attacks
 def party_attack(party):
+    sound("battle.wav")
     party_power = party.get_total_morale()/4 + party.get_total_health()/4
     print("You attack the enemy for " + str(party_power) + " Damage!")
     return party_power

@@ -10,10 +10,17 @@ from assets import *
 from store import *
 from events import *
 from time import sleep
+from pygame import mixer
 
 #Initialize ability to play sound files
+mixer.init()
+mixer.music.load("audio/title_music.wav")
+#Set volume
+mixer.music.set_volume(0.7)
 
-
+def sound(file):
+    sound = mixer.Sound("audio/%s" % file)
+    return mixer.Sound.play(sound)
 
 #create main loop
 running = True
@@ -145,6 +152,7 @@ def decision_menu(party, day):
                 pause = input("Press any key to continue")
                 print("\033c")
         elif user_choice == "3":
+            print("The day is %d" % (day))
             if check_location(day):
                 print("Entering store")
                 store(party)
@@ -161,13 +169,13 @@ def decision_menu(party, day):
             pause = input("Press any key to continue")
             print("\033c")
         elif user_choice == "6":
-            print("Exiting the game")
+            print("Exiting the game. Thanks for playing!")
             run = False
             exit()
         else:
             print("Invalid input. Please choose from options 1-6.")
             
-#Daily incrementing for fullness, health, and morale
+#Daily incrementing for fullness, health, morale, and fuel
 
 def hunger(party):
     if party.food > 0:
@@ -214,23 +222,24 @@ def check_dead(party):
     count = 0
     for person in party.party_members:
         if person.is_alive() == False:
-            party.party_members.remove(person)
+            # party.party_members.remove(person)
             count += 1
             print("\n%s has died" % (person.name))
             if count >= len(party.party_members):
-                print("You all died.")
+                print("\nYou all died.")
                 game_over()
     
 
 #Function to add slow typing effect
 def type_text(words):
     for char in words:
-        sleep(0.1)
+        sleep(0.05)
         print(char, end='', flush=True)
 
 ################################################
 # Executable program 
 print("\033c")
+mixer.music.play()
 #print title screen
 main_title()
 pause = input("\nPress any key to begin")
