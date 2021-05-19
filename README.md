@@ -18,7 +18,7 @@ To make it to Portland in the next 10 days, braving disease, disaster, and all k
 
  
 ## Screenshots
-![The COVID Trail Gif](https://github.com/natelee3/the_covid_trail/blob/readme/covid_trail_gif.gif)
+![The COVID Trail Gif](https://github.com/natelee3/the_covid_trail/blob/main/covid_trail_gif.gif)
 
 ## Features
 - Choice of Character to join a party of 5 characters on a 10 day trip from Atlanta to Portland
